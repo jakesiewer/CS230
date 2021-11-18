@@ -1,0 +1,71 @@
+[{
+  "_id": {
+    "$oid": "6079e8028df2f6ecbe1dd32b"
+  },
+  "Manufacturer": "Samsung",
+  "Model": "Galaxy S21 Ultra 5G",
+  "Price": "€1299.00"
+},{
+  "_id": {
+    "$oid": "6079e7708df2f6ecbe1dd328"
+  },
+  "Manufacturer": "Google",
+  "Model": "Pixel 4a 5G",
+  "Price": "€499.00"
+},{
+  "_id": {
+    "$oid": "6079e5da8df2f6ecbe1dd321"
+  },
+  "Manufacturer": "Apple",
+  "Model": "iPhone 12 Mini",
+  "Price": "€829.00"
+},{
+  "_id": {
+    "$oid": "6079e7dd8df2f6ecbe1dd32a"
+  },
+  "Manufacturer": "Samsung",
+  "Model": "Galaxy S21 5G",
+  "Price": "€879.00"
+},{
+  "_id": {
+    "$oid": "6079e6618df2f6ecbe1dd322"
+  },
+  "Manufacturer": "Google",
+  "Model": "Pixel 5",
+  "Price": "€629.00"
+},{
+  "_id": {
+    "$oid": "6084a966fca8613294c8e044"
+  },
+  "Manufacturer": "Samsung",
+  "Model": "Galaxy S21+ 5G",
+  "Price": "€1089.00"
+},{
+  "_id": {
+    "$oid": "6079e47e8df2f6ecbe1dd31e"
+  },
+  "Manufacturer": "Apple",
+  "Model": "iPhone 12",
+  "Price": "€929.00"
+},{
+  "_id": {
+    "$oid": "6079e5a88df2f6ecbe1dd320"
+  },
+  "Manufacturer": "Apple",
+  "Model": "iPhone 12 Pro Max",
+  "Price": "€1279.00"
+},{
+  "_id": {
+    "$oid": "6079e7858df2f6ecbe1dd329"
+  },
+  "Manufacturer": "Google",
+  "Model": "Pixel 4a",
+  "Price": "€389.00"
+},{
+  "_id": {
+    "$oid": "6079e5698df2f6ecbe1dd31f"
+  },
+  "Manufacturer": "Apple",
+  "Model": "iPhone 12 Pro",
+  "Price": "€1179.00"
+}]

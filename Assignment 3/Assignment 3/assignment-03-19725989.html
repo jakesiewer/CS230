@@ -1,0 +1,515 @@
+<!-- TABLE CODE FROM JOHN KEATING
+     **************************** -->
+
+<!-- didnt know how to reference table outside method, found how to on stackoverflow -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Convert JavaScript Object Data to HTML Table</title>
+    <!-- External File containing table, etc. styles -->
+    <link rel="stylesheet" type="text/css" href="assignment-03.css">
+    <!-- External File containing JS support for random data generation -->
+    <script type="text/javascript" src="assignment-03.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+    </script>
+    <!-- Functions for the random table data generation -->
+    <script>
+        window.onload = function()
+        {
+            createHTMLTableFromTableObject();
+        };
+
+        function getRandomStudentNumber(l) {
+            return [...Array(l)].map(() => Math.floor(Math.random() * 10)).join('');
+        }
+        function getRandomGrade() {
+            return Math.round(Math.random() * 99) + 1;
+        }
+    </script>
+</head>
+
+<body>
+    <!-- View showing Table containing randonly generated data -->
+    <!-- And a Button to generate another random table-->
+    <div>
+        <!-- <div style="padding: 20px; text-align: center;"><input type="button" onclick="createHTMLTableFromTableObject()"
+                value="Create Table From JavaScript Object" /></div> -->
+        <div class="mid">
+            <div style="padding-right: 20px"><input type="button" onclick="rowInsert()"
+                    value="Add New Row" /></div>
+            <div style="padding-right: 20px"><input type="button" onclick="colInsert()"
+                    value="Add New Column" /></div>
+            <div><input  type="button" onclick="LoadTable()"
+                value="Go Back" /></div>
+        </div>
+        <div style="padding: 20px;" id="showTableData_container" onkeyup="avCalc()">
+            <table class="htmlTable"></table>
+        </div>
+        <p style="padding-left: 40px" id="unSubAss">Unsubmitted Assignments: 50</p>
+
+</div>
+
+
+    <!-- This part does the grunt work - it's a work in progress! -->
+    <!-- Function to generate a JS Table Object, and a function to convert to HTML Table --> 
+    <script>
+        //
+        // The table object - it is the data model!
+        //
+        var myTable = [];  
+        //
+        // generate random data to populate the table model (populates a JavaScript object)
+        //
+        function genNewTable(table, numRows) {
+            for (i = 0; i < numRows; i++) {
+                // generate table row with random data
+                table.push({
+                    "Student Name": getRandomName(),
+                    "Student ID": getRandomStudentNumber(9),
+                    "Assignment 1": "-",
+                    "Assignment 2": "-",
+                    "Assignment 3": "-",
+                    "Assignment 4": "-",
+                    "Assignment 5": "-",
+                    "Average [%]": null
+                });
+                // calculate the average grade for the last generated record inserted into table
+                numAssignments = -3; averageGrade = 0;
+                studentRecord = table[table.length - 1];
+                // get the keys for any column matching "assignment"
+                // var assignmentKeys = Object.keys(studentRecord).filter((assignment) => /Assignment/.test(assignment));
+                // get total grades (not averaged) just to see what you can do with filter
+                // Object.keys(studentRecord).filter((assignment) => averageGrade += (/Assignment/.test(assignment))?studentRecord[assignment]:0);
+                for (var column in studentRecord) {
+                    if (/^Assignment/.test(column))
+                        averageGrade += studentRecord[column]; 
+                        numAssignments++;
+                }
+                averageGrade = Math.round(averageGrade / numAssignments);
+                // set the final column to the average grade for the randomly generated grades
+                studentRecord["Average [%]"] = 0 +"%";
+            }
+        }
+        //
+        // generate a table from the JavaScript (JSON) object
+        //
+        function createHTMLTableFromTableObject() {
+            // generate a new table using random data
+            myTable = []; genNewTable(myTable, 10);
+
+            // extract the column headers from the current data model (using first row of data model)
+            var colHeaders = Object.keys(myTable[0]);
+
+            // create the <table> object for inserting into DOM
+            var table = document.createElement("table");
+            table.setAttribute("id", "showTableData");
+
+            // create the <table> header row first using extracted headers
+            var tr = table.insertRow(-1);                  // create the row (at end of table)                
+            for (var i = 0; i < colHeaders.length; i++) {
+                var th = document.createElement("th");     // and the headers
+                th.setAttribute("class", "thCell thAlign");     // add the styles
+                th.innerHTML = colHeaders[i];
+                tr.appendChild(th);
+
+                if(i == colHeaders.length-1)
+                {
+                    th.setAttribute("id", "convert");
+                }
+            }
+
+            // add the data from the table object as rows
+            for (var i = 0; i < myTable.length; i++) {
+                tr = table.insertRow(-1); // insert row at end of table
+                for (var j = 0; j < colHeaders.length; j++) {
+                    var tabCell = tr.insertCell(-1); // insert at end of row
+                    if (j<2) {
+                        tabCell.setAttribute("class", "tdCell tdTxtAlign");
+                    } else if(j == colHeaders.length-1) {
+                        tabCell.setAttribute("class", "tcRed tdNumAlign");
+                    }
+                    else {
+                        tabCell.setAttribute("class", "tdCell tdNumAlign");
+
+                        // make cells content editable
+                        tabCell.contentEditable = true;
+                    }
+                    tabCell.innerHTML = myTable[i][colHeaders[j]];
+                }
+            }
+            // now update the table view (container)
+            var viewContainer = document.getElementById("showTableData_container");
+            viewContainer.innerHTML = ""; // reset
+            viewContainer.appendChild(table); // add the table
+            checkDash();
+        }
+
+        //format table to correct colour and text alignment after creation
+        function checkDash()
+        {
+            var table = document.getElementById("showTableData");
+
+            for(var i = 0; i < table.rows.length; i++)
+            {
+                for(var j = 0; j < table.rows[0].cells.length; j++)
+                {
+                    if(table.rows[i].cells[j].innerHTML == "-")
+                    {
+                        table.rows[i].cells[j].setAttribute("class", "tcYellow thAlign");
+                    }
+                }
+            }
+
+        }
+
+        //function to add a new row
+        //different if statements for different columns of the table
+        function colInsert()
+        {
+            //table ref
+            var table = document.getElementById("showTableData");
+            var colHeaders = Object.keys(myTable[0]);
+            var assLength = Object.keys(myTable.length-1);
+            
+            var position = table.rows[0].cells.length -1;
+            var assnum = table.rows[0].cells.length -2;
+
+            //iterate through column after final assignment
+            for (var i = 0; i < table.rows.length; i++) 
+            {
+                var tr = table.rows[i];
+                var cell = table.rows[i].insertCell(position);
+                // assignment title
+                if(i == 0)
+                {
+                    cell.innerHTML = "Assignment " + assnum;
+                    cell.setAttribute("class", "thCell thAlign");
+                }
+                // assignment grade cells
+                else
+                {
+                    cell.innerHTML = "-";
+                    cell.setAttribute("class", "tcYellow thAlign");
+                    cell.contentEditable = true;
+                }
+            }
+            avCalc();
+        }
+
+        //function to add a new row
+        //different if statements for diff cells of the table
+        function rowInsert()
+        {
+            var table = document.getElementById("showTableData");
+            var colHeaders = Object.keys(myTable[0]);
+            averageGrade = 0;
+
+            //iterate thru each row
+            var tr = table.insertRow(-1);                  // create the row (at end of table)                
+            for (var i = 0; i < table.rows[0].cells.length; i++) 
+            {
+                var nc = tr.insertCell();     // and the headers
+                //name cell
+                if(i == 0)
+                {
+                    nc.innerHTML = getRandomName();
+                    nc.setAttribute("class", "tdCell tdTxtAlign");
+                    tr.appendChild(nc);
+                }
+                //student # cell
+                else if(i == 1)
+                {
+                    nc.innerHTML = getRandomStudentNumber(9);
+                    nc.setAttribute("class", "tdCell thAlign");
+                    tr.appendChild(nc);
+                }
+                //average grade cell
+                else if(i == table.rows[0].cells.length-1)
+                {
+                    averageGrade = Math.round(averageGrade / numAssignments);
+                    nc.innerHTML = 0 + "%";
+                    nc.setAttribute("class", "tcRed tdNumAlign");
+                    tr.appendChild(nc);
+                }
+
+                //grade cells
+                else
+                {
+                    nc.innerHTML = "-";
+                    nc.setAttribute("class", "tcYellow thAlign");
+                    nc.contentEditable = true;
+                    averageGrade += nc; 
+                    numAssignments++;
+                    tr.appendChild(nc);
+                    
+                }
+            }
+            check();
+            //calculate average and format table
+            avCalc();
+        }
+
+        //check if grade column header cell has been clicked,
+        //if so switch column to different grade scale
+        $(document).on( 'click', '#convert', function ()
+        {
+            var table = document.getElementById("showTableData");
+            var position = table.rows[0].cells.length-1;
+            var conbut = table.rows[0].cells[position];
+            
+            if(conbut.innerHTML == "Average [%]")
+            {
+                conbut.innerHTML = "Average [Letter]";
+                for (var i = 1; i < table.rows.length; i++) 
+                {
+                    var pos = table.rows[i].cells.length-1;
+                    let grade = table.rows[i].cells[pos];
+                    grade.innerHTML = percentToLetter(grade.innerHTML);
+                }
+            }
+            else if(conbut.innerHTML == "Average [Letter]")
+            {
+                conbut.innerHTML = "Average [4.0]";
+                for (var i = 1; i < table.rows.length; i++) 
+                {
+                    var pos = table.rows[i].cells.length-1;
+                    let grade = table.rows[i].cells[pos];
+                    grade.innerHTML = letterToGPA(grade.innerHTML);
+                }
+            }
+            else if(conbut.innerHTML == "Average [4.0]")
+            {
+                conbut.innerHTML = "Average [%]";
+                toPercent();
+            }
+        });
+
+        //chnage percent grade to letter grade
+        function percentToLetter(n)
+        {
+            let p = parseInt(n, 10);
+            let grades = {'A' : 93, 'A-' : 90, 'B+' : 87, 'B' : 83, 'B-' : 80, 'C+' : 77, 'C' : 73, 'C-' : 70, 'D+' : 67, 'D' : 63, 'D-' : 60, 'F' : 0};
+            var lettergrade = 'F';
+            Object.keys(grades).some(function (k)
+            {
+                if(p >= grades[k])
+                {
+                    lettergrade = k;
+                    return true;
+                }
+            });
+            return lettergrade;
+        }
+
+        //change letter grade to GPA
+        function letterToGPA(n)
+        {
+            let p = parseInt(n, 10);
+            let grades = {'4.0' : 'A', '3.7' : 'A-', '3.3' : 'B+', '3.0' : 'B', '2.7' : 'B-', '2.3' : 'C+', '2.0' : 'C', '1.7' : 'C-', '1.3' : 'D+', '1.0' : 'D', '0.7' : 'D-', '0.0' : 'F'};
+            var lettergrade = '0.0';
+            Object.keys(grades).some(function (k)
+            {
+                if(n == grades[k])
+                {
+                    lettergrade = k;
+                    return true;
+                }
+            });
+            return lettergrade;
+        }
+
+        //convert table to percent
+        function toPercent()
+        {
+            var table = document.getElementById("showTableData");
+            for (var i = 1; i < table.rows.length; i++) 
+            {
+                var numass = table.rows[0].cells.length-3;
+                var score = 0;
+                for (var j = 2; j < table.rows[0].cells.length-1; j++) 
+                {
+                    var cell = table.rows[i].cells[j];
+
+                    if(cell.innerHTML != "-" && cell.innerHTML != "")
+                    {
+                        score += parseInt(cell.innerHTML);
+                    }
+                }
+                var avg = Math.round(score / numass);
+                var total = table.rows[i].cells[j];
+                total.innerHTML = avg + "%";
+            }
+        }
+
+        //function to deal with calculation of average and rejection of unwanted inputs
+        function avCalc()
+        {
+            var table = document.getElementById("showTableData");
+            var count = document.getElementById("unSubAss");
+            var unsubass = 0;
+
+            for (var i = 1; i < table.rows.length; i++) 
+            {
+                var numass = table.rows[0].cells.length-3;
+                var score = 0;
+
+                for (var j = 2; j < table.rows[0].cells.length-1; j++) 
+                {
+                    var cell = table.rows[i].cells[j];
+                    if(cell.innerHTML.match(/\d{1,2}/) || cell.innerHTML == "-" || cell.innerHTML == "")
+                    {
+                        if(cell.innerHTML > 100 || cell.innerHTML < 0)
+                        {
+                            cell.innerHTML = "-";
+                        }
+
+                        if(cell.innerHTML == "-" || cell.innerHTML == "");
+                        {
+                            cell.setAttribute("class", "tcYellow thAlign");
+                            unsubass++;
+                        }
+
+                        if(cell.innerHTML != "-" && cell.innerHTML != "")
+                        {
+                            score += parseInt(cell.innerHTML);       
+                            table.rows[i].cells[j].setAttribute("class", "tdCell tdNumAlign");
+                            //console.log(cell);   
+                        }
+
+                        if(cell.innerHTML <= 100 || cell.innerHTML >= 0)
+                        {
+                            unsubass--;
+                        }
+                    }
+                    else
+                    {
+                        cell.innerHTML = "-";
+                        cell.setAttribute("class", "tcYellow thAlign");
+                    }
+                }
+                //change grade scale according to grade column header
+                var gradehead = table.rows[0].cells.length-1;
+                var gradecell = table.rows[0].cells[gradehead];
+
+                var avg = Math.round(score / numass);
+                var total = table.rows[i].cells[j];
+                
+                if(gradecell.innerHTML == "Average [%]")
+                {
+                    total.innerHTML = avg + "%";
+                }
+                else if(gradecell.innerHTML == "Average [Letter]")
+                {
+                    total.innerHTML = percentToLetter(avg);
+                }
+                else if(gradecell.innerHTML == "Average [4.0]")
+                {
+                    var temp = percentToLetter(avg);
+                    total.innerHTML = letterToGPA(temp);
+                }
+
+                if(avg < 60)
+                {
+                    total.setAttribute("class", "tcRed tdNumAlign");
+                }
+                else if(avg >= 60)
+                {
+                    total.setAttribute("class", "tdCell tdNumAlign");
+                }
+            }
+            count.innerHTML = "Unsubmitted Assignments: " + unsubass;
+            saveTable();
+        }
+
+        //check if cell = "-"
+        function check()
+        {
+            var table = document.getElementById("showTableData");
+            for (var i = 0; i < table.rows.length; i++) 
+            {
+                for (var j = 0; j < table.rows[0].cells.length; j++) 
+                {
+                    console.log(table.rows[i].cells[j].innerHTML);
+                }
+            }
+        }
+
+        //attempt to get cookies for relaoding the table to work, some code gotten from stackoverflow
+        
+        //save cells into data element
+        function saveTable() 
+        {
+            var table = document.getElementById("showTableData");
+            var num = table.rows[0].cells.length;
+            var data = '';
+            //iterate through table and store in data
+            for (var i = 1; i < table.rows.length; i++) 
+            {
+                for (var j = 0; j < table.rows[0].cells.length - 1; j++) 
+                {
+                    data += table.rows[i].cells[j].innerHTML + "~";
+                }
+            }
+            data += table.rows.length + ";" + table.rows[0].cells.length + ";" + data.substring(0, data.length);
+            
+            //put data into setcookie method below
+            setCookie("data", data, 60);
+
+            console.log("Cookie Saved");
+        }
+
+        // method for storing data into cookie
+        function setCookie(cname, cvalue, exdays)
+        {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "~" + expires + ";path=/";
+        }
+
+        //load table into console for checking before creating the function to rebuild the table
+        function LoadTable() 
+        {
+            var data = getCookie("data");
+            //console.log(data);
+            if (data != "") 
+            {
+                alert("The table says:" + data);
+            } 
+            else 
+            {
+                alert("No Previous Data");
+            }
+        }
+
+        // function to retrieve the cookie
+        function getCookie(cname) 
+        {
+            var name = cname + "=";
+            var cookie = decodeURIComponent(document.cookie);
+            var ca = cookie.split(';');
+            for (var i = 0; i < ca.length; i++) 
+            {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') 
+                {
+                    c = c.substring(1);
+                    console.log("hello");
+                }
+                if (c.indexOf(name) == 0) 
+                {
+                    return c.substring(name.length, c.length);
+
+                }
+            }
+            return "";
+        }
+    </script>
+</body>
+
+</html>

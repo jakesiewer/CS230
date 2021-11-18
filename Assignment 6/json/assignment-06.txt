@@ -1,0 +1,269 @@
+// CUSTOMERS
+
+[{
+  "_id": {
+    "$oid": "608d49ba0865cccbd0480cb4"
+  },
+  "title": "Mrs",
+  "fname": "Tamara",
+  "sname": "McGrath",
+  "email": "Tamara.McGrath@bluemail.com",
+  "mobile": "1234567890",
+  "ShippingAddress": {
+    "street": "9416 VICTORIA VILLAS",
+    "addline2": "The Avenue",
+    "town": "Ballingeary (Béal Átha an Ghaorthaidh)",
+    "county": "Cork",
+    "eircode": "X99 ZS17"
+  },
+  "BillingAddress": {
+    "street": "9416 VICTORIA VILLAS",
+    "addline2": "The Avenue",
+    "town": "Ballingeary (Béal Átha an Ghaorthaidh)",
+    "county": "Cork",
+    "eircode": "X99 ZS17"
+  },
+  "createdAt": {
+    "$date": "2021-05-01T12:29:46.302Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-01T18:27:18.364Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608da3a083178cc9685409ff"
+  },
+  "title": "Dr",
+  "fname": "Nadia",
+  "sname": "Buckley",
+  "email": "Nadia.Buckley@graymail.ie",
+  "mobile": "0593085428",
+  "ShippingAddress": {
+    "street": "4147 ARDILAUN ROAD",
+    "addline2": "The Place",
+    "town": "Newtownforbes",
+    "county": "Longford",
+    "eircode": "T13 GC26"
+  },
+  "BillingAddress": {
+    "street": "4147 ARDILAUN ROAD",
+    "addline2": "The Place",
+    "town": "Newtownforbes",
+    "county": "Longford",
+    "eircode": "T13 GC26"
+  },
+  "createdAt": {
+    "$date": "2021-05-01T18:53:20.262Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-01T18:53:20.262Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608da3c0cd1affbee41ba102"
+  },
+  "title": "Mr",
+  "fname": "Jasmine",
+  "sname": "Ward",
+  "email": "Jasmine.Ward@greenmail.ie",
+  "mobile": "1936280546",
+  "ShippingAddress": {
+    "street": "8152 MAGENNIS PLACE",
+    "addline2": "The Lake",
+    "town": "Gowran",
+    "county": "Kilkenny",
+    "eircode": "G27 JA40"
+  },
+  "BillingAddress": {
+    "street": "8152 MAGENNIS PLACE",
+    "addline2": "The Lake",
+    "town": "Gowran",
+    "county": "Kilkenny",
+    "eircode": "G27 JA40"
+  },
+  "createdAt": {
+    "$date": "2021-05-01T18:53:52.593Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-01T18:53:52.593Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608dd71670855e129d6cd0d1"
+  },
+  "title": "Miss",
+  "fname": "Dónal",
+  "sname": "White",
+  "email": "Dónal.White@silvermail.ie",
+  "mobile": "7566791829",
+  "ShippingAddress": {
+    "street": "1201 DANIELI ROAD",
+    "addline2": "The Road",
+    "town": "Threemilehouse (Three Mile House, Cabragh)",
+    "county": "Monaghan",
+    "eircode": "F49 YP57"
+  },
+  "BillingAddress": {
+    "street": "1201 DANIELI ROAD",
+    "addline2": "The Road",
+    "town": "Threemilehouse (Three Mile House, Cabragh)",
+    "county": "Monaghan",
+    "eircode": "F49 YP57"
+  },
+  "createdAt": {
+    "$date": "2021-05-01T22:32:54.998Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-01T22:32:54.998Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608de87ecceceb4cb0aea03b"
+  },
+  "title": "Ms",
+  "fname": "Laila",
+  "sname": "Burke",
+  "email": "Laila.Burke@redmail.ie",
+  "mobile": "3467035488",
+  "HomeAddress": {
+    "street": "1298 BROOKWOOD ROAD",
+    "addline2": "The Waterfall",
+    "town": "Kilmaine (Kilmain)",
+    "county": "Mayo",
+    "eircode": "C46 YO66"
+  },
+  "ShippingAddress": {
+    "street": "1298 BROOKWOOD ROAD",
+    "addline2": "The Waterfall",
+    "town": "Kilmaine (Kilmain)",
+    "county": "Mayo",
+    "eircode": "C46 YO66"
+  },
+  "createdAt": {
+    "$date": "2021-05-01T23:47:10.308Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-01T23:47:10.308Z"
+  },
+  "__v": 0
+}]
+
+// PHONES
+
+[{
+  "_id": {
+    "$oid": "6079e8028df2f6ecbe1dd32b"
+  },
+  "Manufacturer": "Samsung",
+  "Model": "Galaxy S21 Ultra 5G",
+  "Price": "€1299.00"
+},{
+  "_id": {
+    "$oid": "6079e7708df2f6ecbe1dd328"
+  },
+  "Manufacturer": "Google",
+  "Model": "Pixel 4a 5G",
+  "Price": "€499.00"
+},{
+  "_id": {
+    "$oid": "6079e5da8df2f6ecbe1dd321"
+  },
+  "Manufacturer": "Apple",
+  "Model": "iPhone 12 Mini",
+  "Price": "€829.00"
+},{
+  "_id": {
+    "$oid": "6079e7dd8df2f6ecbe1dd32a"
+  },
+  "Manufacturer": "Samsung",
+  "Model": "Galaxy S21 5G",
+  "Price": "€879.00"
+},{
+  "_id": {
+    "$oid": "6079e6618df2f6ecbe1dd322"
+  },
+  "Manufacturer": "Google",
+  "Model": "Pixel 5",
+  "Price": "€629.00"
+},{
+  "_id": {
+    "$oid": "6084a966fca8613294c8e044"
+  },
+  "Manufacturer": "Samsung",
+  "Model": "Galaxy S21+ 5G",
+  "Price": "€1089.00"
+},{
+  "_id": {
+    "$oid": "6079e47e8df2f6ecbe1dd31e"
+  },
+  "Manufacturer": "Apple",
+  "Model": "iPhone 12",
+  "Price": "€929.00"
+},{
+  "_id": {
+    "$oid": "6079e5a88df2f6ecbe1dd320"
+  },
+  "Manufacturer": "Apple",
+  "Model": "iPhone 12 Pro Max",
+  "Price": "€1279.00"
+},{
+  "_id": {
+    "$oid": "6079e7858df2f6ecbe1dd329"
+  },
+  "Manufacturer": "Google",
+  "Model": "Pixel 4a",
+  "Price": "€389.00"
+},{
+  "_id": {
+    "$oid": "6079e5698df2f6ecbe1dd31f"
+  },
+  "Manufacturer": "Apple",
+  "Model": "iPhone 12 Pro",
+  "Price": "€1179.00"
+}]
+
+// ORDERS
+
+[{
+  "_id": {
+    "$oid": "608de106914410a32c19cd4e"
+  },
+  "CustomerID": "608d49ba0865cccbd0480cb4",
+  "Receipt": {
+    "Item1": "6079e47e8df2f6ecbe1dd31e",
+    "Item2": "6079e5a88df2f6ecbe1dd320",
+    "Item3": "6079e5a88df2f6ecbe1dd320",
+    "Item4": "6079e5a88df2f6ecbe1dd320",
+    "Item5": "6079e5a88df2f6ecbe1dd320"
+  },
+  "createdAt": {
+    "$date": "2021-05-01T23:15:18.057Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-01T23:15:18.057Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608de185bd30e0108d0afd2f"
+  },
+  "CustomerID": "608d49ba0865cccbd0480cb4",
+  "Receipt": {
+    "Item1": "6079e47e8df2f6ecbe1dd31e",
+    "Item2": "6079e5a88df2f6ecbe1dd320",
+    "Item3": "6079e5a88df2f6ecbe1dd320",
+    "Item4": "6079e5a88df2f6ecbe1dd320",
+    "Item5": "6079e5a88df2f6ecbe1dd320"
+  },
+  "createdAt": {
+    "$date": "2021-05-01T23:17:25.380Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-01T23:17:25.380Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+  <html lang="en" >
+
+    <head>
+      <meta charset="UTF-8">
+      <title>JS Simon Game</title>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Orbitron:700"/> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+      
+          <link rel="stylesheet" href="css/style.css">
+<style>
+  /*Downloaded from https://www.codeseek.co/chrisparker/js-simon-game-LWqZNM */
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans|Orbitron:700');
+body {
+  margin: 0px;
+}
+
+.cont {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQoU2P8/v37fwYkwMnJyYjMZ6SDAmT7QGx0K1EcRBsFACN7H5kpPw+qAAAAAElFTkSuQmCC) repeat;
+}
+
+
+/* SEGMENTS */
+
+.circle {
+  margin: 50px auto;
+  border-radius: 50%;
+  background: #141414;
+  width: 450px;
+  height: 450px;
+  overflow: hidden;
+  border: 25px solid #141414;
+}
+
+.segment {
+  float: left;
+  width: 47.5%;
+  height: 47.5%;
+  z-index: 999999999;
+}
+
+.green {
+  background: #39D548;
+}
+
+.red {
+  background: #E50000;
+  float: right;
+}
+
+.yellow {
+  background: #E5DD00;
+  margin-top: 5%;
+}
+
+.blue {
+  background: #0095EF;
+  float: right;
+  margin-top: 5%;
+}
+
+
+/* INNER CIRCLE */
+
+.circleinner {
+  overflow: hidden;
+  text-align: center;
+  color: white;
+  border: 5px solid #141414;
+  background: #141414;
+  position: absolute;
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 240px;
+  height: 240px;
+  top: 175px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.circleinnertop {
+  border-top-left-radius: 500px;
+  border-top-right-radius: 500px;
+  position: relative;
+  overflow: hidden;
+  height: 55%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAJElEQVQoU2NkIAIwEqGGgSxF/5FMhhuAbhL1FGH1B1kOx2oSAALIAwoD0LgJAAAAAElFTkSuQmCC);
+  repeat;
+  margin: 3px;
+  margin-bottom: 6px;
+}
+
+.simon {
+  letter-spacing: -2px;
+  font-size: 4em;
+  font-weight: bold;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  top: 70px;
+  font-family: 'Orbitron', "Syncopate", sans-serif;
+  color: white;
+  text-shadow: -3px -3px 0 #000000, 3px -3px 0 #000000, -3px 3px 0 #000000, 3px 3px 0 #000000;
+}
+
+
+/* CONTROLS */
+
+.score {
+  font-size: 1.5em;
+  margin-left: 8px;
+  font-family: 'VT323', sans-serif;
+  min-width: 36px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: black;
+  color: #e3e3e3;
+  position: absolute;
+  text-align: center;
+  border-radius: 5px;
+  left: 20px;
+}
+
+.start {
+  margin-left: 105px;
+  background-color: #00BF3D;
+  background: radial-gradient(#00BF3D, #00B730, #00B730);
+}
+
+.strict {
+  margin-left: 43px;
+  background-color: #FFF600;
+}
+
+.start,
+.strict {
+  display: inline;
+  float: left;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #DDDDDD;
+  border-radius: 50%;
+}
+
+.button.start,
+.button.strict {
+  cursor: pointer;
+  -moz-box-shadow: inset 0px 0px 4px #FFFFFF;
+  -webkit-box-shadow: inset 0px 0px 4px #FFFFFF;
+  box-shadow: inset 0px 0px 4px #FFFFFF;
+}
+
+.button.start:active,
+.button.strict:active {
+  -moz-box-shadow: inset 0px 0px 4px #000000;
+  -webkit-box-shadow: inset 0px 0px 4px #000000;
+  box-shadow: inset 0px 0px 4px #000000;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.start:hover {
+  background-color: #009327;
+  background: radial-gradient(#009327, #009327, #00A52C);
+}
+
+.strict:hover {
+  background-color: #E5DD00;
+}
+
+
+/* LABELS */
+
+.labels {
+  clear: both;
+  font-size: 0.5em;
+  width: 88%;
+  margin: 0 auto;
+  padding-top: 5px;
+  text-transform: Uppercase;
+}
+
+.lab {
+  padding-top: 4px;
+  display: inline;
+  width: 33%;
+}
+
+.startlab,
+.scorelab,
+.strictlab,
+.resetlab {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.startlab {
+  margin-right: 46px;
+  margin-left: 46px;
+  position: relative;
+}
+
+
+/* MOBILE */
+
+@media only screen and (max-width: 550px) {
+  .circleinner {
+    width: 160px;
+    height: 160px;
+    top: 140px;
+    font-size: 2em;
+  }
+  .circleinnertop {
+    height: 55%;
+    margin-bottom: 5px;
+  }
+  .circle {
+    height: 320px;
+    width: 320px;
+    border: 15px solid black;
+  }
+  .labels {
+    font-size: 8px;
+    padding-top: 0px;
+  }
+  .score {
+    font-size: 0.7em;
+    left: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+    min-width: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+  .start {
+    margin-left: 67px;
+    width: 24px;
+    height: 24px;
+  }
+  .scorelab,
+  .strictlab,
+  .startlab {
+    position: relative;
+    top: 1px;
+  }
+  .reset {
+    margin-top: 13px;
+    width: 12px;
+    height: 12px;
+  }
+  .startlab {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  .simon {
+    font-size: 1.4em;
+    top: 46px;
+    position: relative;
+  }
+  .strict {
+    margin-left: 20px;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+
+/* EVEN SMALLER */
+
+@media only screen and (max-width: 365px) {
+  .cont {
+    background: #141414;
+    height: 100%;
+  }
+  .circle {
+    height: 220px;
+    width: 100%;
+    border: 0px solid #141414;
+    top: 180px;
+    margin: 0px;
+    border-radius: 0px;
+    position: relative;
+    background: none;
+  }
+  .circleinner {
+    height: 160px;
+    top: 10px;
+    font-size: 2em;
+    border-radius: 0px;
+    background: transparent;
+    border-radius: 0px;
+  }
+  .circleinnertop {
+    background: transparent;
+    border-radius: 0px;
+  }
+  .simon {
+    top: 30px;
+  }
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+/*Downloaded from https://www.codeseek.co/chrisparker/js-simon-game-LWqZNM */
+var col = ["g", "r", "y", "b"];
+var seq = [];
+var userseq = [];
+var sound1 = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3");
+var sound2 = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3");
+var sound3 = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3");
+var sound4 = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3");
+var strict = false;
+var press = false;
+var startAnimation = true;
+
+function getScore() {
+  $(".score").html(seq.length);
+}
+
+function getCol() {
+  return seq.push(col[Math.floor(Math.random() * (4))])
+}
+
+function animate() {
+  if (startAnimation) {
+    $(".start.button").css({
+      'border-color': '#FFFFFF',
+      'box-shadow': '0px 0px 25px #FFFFFF',
+      '-moz-box-shadow:': '0px 0px 25px #FFFFFF',
+      '-webkit-box-shadow:': '0px 0px 25px #FFFFFF'
+    })
+    startAnimation = false;
+  } else {
+    $(".start.button").css({
+      'border-color': '#DDDDDD',
+      'box-shadow': '0px 0px 0px #000000',
+      '-moz-box-shadow:': '0px 0px 0px #000000',
+      '-webkit-box-shadow:': '0px 0px 0px #000000'
+    })
+    startAnimation = true;
+  }
+}
+
+var animateStart;
+
+$(document).ready(function() {
+  $(".score").html("0");
+  $(".segment").css("cursor", "default");
+  animateStart = setInterval(function() {
+    animate()
+  }, 1000);
+})
+
+$(".start").click(function() {
+  seq = [];
+  userseq = [];
+  getCol();
+  selectPattern();
+  $(".score").html(seq.length);
+  clearInterval(animateStart);
+  $(".start.button").css({
+    'border-color': '#FFFFFF',
+    'box-shadow': '0px 0px 25px #FFFFFF',
+    '-moz-box-shadow:': '0px 0px 25px #FFFFFF',
+    '-webkit-box-shadow:': '0px 0px 25px #FFFFFF'
+  })
+})
+
+$(".strict").click(function() {
+  if (strict) {
+    strict = false;
+    $(".strict.button").css({
+      'border-color': '#DDDDDD',
+      'box-shadow': '0px 0px 0px #000000',
+      '-moz-box-shadow:': '0px 0px 0px #000000',
+      '-webkit-box-shadow:': '0px 0px 0px #000000'
+    })
+  } else {
+    strict = true;
+    $(".strict.button").css({
+      'border-color': '#FFFFFF',
+      'box-shadow': '0px 0px 25px #FFFFFF',
+      '-moz-box-shadow:': '0px 0px 25px #FFFFFF',
+      '-webkit-box-shadow:': '0px 0px 25px #FFFFFF'
+    })
+  }
+})
+
+function reset() {
+  seq = [];
+  userseq = [];
+  getScore();
+  press = false;
+  $(".segment").css("cursor", "default");
+}
+
+function selectPattern() {
+  var offset = 0;
+  $.each(seq, function(i, clr) {
+    setTimeout(function() {
+      if (seq[i] === "g") {
+        green();
+      } else if (seq[i] === "r") {
+        red();
+      } else if (seq[i] === "y") {
+        yellow()
+      } else if (seq[i] === "b") {
+        blue();
+      }
+      if (i === seq.length - 1) {
+        press = true;
+        $(".segment").css("cursor", "pointer");
+      }
+    }, 1000 + offset);
+    offset += 750;
+  });
+}
+
+function green() {
+  sound1.play();
+  $(".green").css("background-color", "#44FF54")
+  setTimeout(function() {
+    $(".green").css("background-color", "#39D548")
+  }, 500)
+}
+
+$(".green").click(function() {
+  if (press) {
+    userseq.push("g");
+    green();
+  }
+})
+
+function red() {
+  sound2.play();
+  $(".red").css("background-color", "#FF0000")
+  setTimeout(function() {
+    $(".red").css("background-color", "#E50000")
+  }, 500)
+}
+
+$(".red").click(function() {
+  if (press) {
+    userseq.push("r");
+    red();
+  }
+})
+
+function yellow() {
+  sound3.play();
+  $(".yellow").css("background-color", "#F8FF47")
+  setTimeout(function() {
+    $(".yellow").css("background-color", "#E5DD00")
+  }, 500)
+}
+
+$(".yellow").click(function() {
+  if (press) {
+    userseq.push("y");
+    yellow();
+  }
+})
+
+function blue() {
+  sound4.play();
+  $(".blue").css("background-color", "#00C2FF")
+  setTimeout(function() {
+    $(".blue").css("background-color", "#0095EF")
+  }, 500)
+}
+
+$(".blue").click(function() {
+  if (press) {
+    userseq.push("b");
+    blue();
+  }
+})
+
+$(".segment").click(function() {
+  if (press) {
+    if (userseq.length === seq.length) {
+      press = false;
+      $(".segment").css("cursor", "default");
+      testSeq(seq, userseq);
+    } else {
+      var newSeq = seq.slice(0, userseq.length);
+      seqLoop(newSeq, userseq);
+    }
+  }
+})
+
+function seqLoop(seq1, seq2) {
+  for (var i = seq1.length; i--;) {
+    if (seq1[i] !== seq2[i]) {
+      if (strict) {
+        $(".score").html("!!");
+        press = false;
+        $(".segment").css("cursor", "default");
+        setTimeout(function() {
+          reset();
+          getCol();
+          selectPattern();
+          $(".score").html(seq.length);
+        }, 2000);
+      } else {
+        $(".score").html("!!");
+        press = false;
+        $(".segment").css("cursor", "default");
+        setTimeout(function() {
+          userseq = [];
+          selectPattern();
+          $(".score").html(seq.length)
+        }, 2000);
+      }
+      return false;
+    }
+  }
+}
+
+function testSeq(arr1, arr2) {
+  for (var i = arr1.length; i--;) {
+    if (arr1[i] !== arr2[i]) {
+      if (strict) {
+        $(".score").html("!!");
+        press = false;
+        $(".segment").css("cursor", "default");
+        setTimeout(function() {
+          reset();
+          getCol();
+          selectPattern();
+          $(".score").html(seq.length);
+        }, 2000);
+      } else {
+        $(".score").html("!!");
+        press = false;
+        $(".segment").css("cursor", "default");
+        setTimeout(function() {
+          userseq = [];
+          selectPattern();
+          $(".score").html(seq.length)
+        }, 2000);
+      }
+      return false;
+    }
+  }
+  if (userseq.length === 20) {
+    $(".score").html("WIN");
+    setTimeout(function() {
+      blue();
+    }, 1000)
+    setTimeout(function() {
+      yellow();
+    }, 1100)
+    setTimeout(function() {
+      red();
+    }, 1200)
+    setTimeout(function() {
+      green();
+    }, 1300)
+    setTimeout(function() {
+      userseq = [];
+      seq = [];
+      getCol();
+      selectPattern();
+      $(".score").html(seq.length);
+      return true;
+    }, 2000);
+  } else {
+    userseq = [];
+    getCol();
+    selectPattern();
+    $(".score").html(seq.length);
+    return true;
+  }
+}
+</script>
+</head>
+<body>
+
+  <!--
+    SIMON MEMORY GAME FOR FREECODECAMP
+    LISTEN TO THE PATTERN AND REPEAT THE STEPS
+    PRESS START TO BEGIN AT ONE OR RESET IF GAME IN PROGRESS
+    PATTERN INCREASES BY ONE STEP EACH TIME YOU ARE CORRECT
+    PATTERN REPEATS IF YOU HIT AN INCORRECT STEP 
+        // RESETS BACK TO ONE IN STRICT MODE
+    REACH 20 STEPS TO WIN
+    BEST PLAYED IN CHROME/FIREFOX
+-->
+
+<div class="cont">
+  <div class="circle">
+    <div id="green" class="segment green button"></div>
+    <div id="red" class="segment red button"></div>
+    <div id="yellow" class="segment yellow button"></div>
+    <div id="blue" class="segment blue button"></div>
+  </div>
+  <div class="circleinner">
+    <div class="circleinnertop">
+      <p class="simon">
+        simon
+      </p>
+    </div>
+    <div class="score">
+    </div>
+    <div class="start button">
+    </div>
+    <div class="strict button">
+    </div>
+    <div class="labels">
+      <div class="scorelab lab">
+        count
+      </div>
+      <div class="startlab lab">
+        start
+      </div>
+      <div class="strictlab lab">
+        strict
+      </div>
+    </div>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+</body>
+</html>

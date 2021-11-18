@@ -1,0 +1,39 @@
+[{
+  "_id": {
+    "$oid": "608de106914410a32c19cd4e"
+  },
+  "CustomerID": "608d49ba0865cccbd0480cb4",
+  "Receipt": {
+    "Item1": "6079e47e8df2f6ecbe1dd31e",
+    "Item2": "6079e5a88df2f6ecbe1dd320",
+    "Item3": "6079e5a88df2f6ecbe1dd320",
+    "Item4": "6079e5a88df2f6ecbe1dd320",
+    "Item5": "6079e5a88df2f6ecbe1dd320"
+  },
+  "createdAt": {
+    "$date": "2021-05-01T23:15:18.057Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-01T23:15:18.057Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608de185bd30e0108d0afd2f"
+  },
+  "CustomerID": "608d49ba0865cccbd0480cb4",
+  "Receipt": {
+    "Item1": "6079e47e8df2f6ecbe1dd31e",
+    "Item2": "6079e5a88df2f6ecbe1dd320",
+    "Item3": "6079e5a88df2f6ecbe1dd320",
+    "Item4": "6079e5a88df2f6ecbe1dd320",
+    "Item5": "6079e5a88df2f6ecbe1dd320"
+  },
+  "createdAt": {
+    "$date": "2021-05-01T23:17:25.380Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-01T23:17:25.380Z"
+  },
+  "__v": 0
+}]

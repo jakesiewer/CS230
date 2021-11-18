@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <table style="width:100%" id="myTable">
+    <tr>
+      <th>Name</th>
+      <th>ID number</th>
+      <th>Assignment 1</th>
+      <th>Assignment 2</th>
+      <th>Assignment 3</th>
+      <th>Assignment 4</th>
+      <th>Assignment 5</th>
+      <th>Final Average Grade</th>
+    </tr>
+    <tr>
+      <td id="left">Tom Malarkey</td>
+      <td id="left">95243654</td>
+      <td contenteditable="true">-</td>
+      <td contenteditable="true">-</td>
+      <td contenteditable="true">-</td>
+      <td contenteditable="true">-</td>
+      <td contenteditable="true">-</td>
+      <td>-</td>
+    </tr>
+  </table>
+  <button type="submit" class="button" onclick=calculateAvg()>
+    Submit
+  </button>
+  <button type="submit" class="button" onclick="saveTable()">
+    Save
+  </button>
+  <button type="submit" class="button" onclick="LoadTable()">
+    Load
+  </button>
+  <script src="script.js"></script>
+</body>
+</html>

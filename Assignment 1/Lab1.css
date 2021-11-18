@@ -1,0 +1,47 @@
+.container{
+    background-color: lightblue;
+    height: 500px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    top: 200px;
+    
+}
+.center 
+{
+  margin: auto;
+  width: 50%;
+  border: 3px lightblue;
+  padding: 10px;
+}
+.tri{
+    position: absolute;
+	border-bottom: 100px solid gray;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+}
+.bigtri{
+    position: absolute;
+	border-bottom: 500px solid gray;
+    border-left: 375px solid transparent;
+    border-right: 375px solid transparent;
+    opacity: 20%;
+}
+.trapezoid {
+    position: absolute;
+    top: 120px;
+	border-bottom: 83.3px solid #555;
+	border-left: 62.5px solid transparent;
+	border-right: 62.5px solid transparent;
+	height: 0;
+	width: 165px;
+}
+.smalltrap{
+    position: absolute;
+    top: 119px;
+	border-bottom: 50px solid orange;
+	border-left: 37.5px solid transparent;
+	border-right: 37.5px solid transparent;
+	height: 0;
+	width: 163px;
+}

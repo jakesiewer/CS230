@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assignment-2 jakesiewer.css">
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous">
+</script>
+
+</head>
+<body>
+<div class="full-height">
+    <div class="circle center">
+        <div class="pointer">
+            <span id="greenbutton" class="button border" ></span>
+            <span id="redbutton" class="button border"></span>
+            <span id="yellowbutton" class="button border"></span>
+            <span id="bluebutton" class="button border"></span>
+        </div>
+        <span id="light" class="button"></span>
+        <span id="midbox" class="box center pointer">START</span>
+        <span id="leftbox" class="box">00</span>
+        <span id="rightbox" class="box">00</span>
+    </div>
+</div>
+
+<script>
+// jquery reference and documentation from jquery.com
+
+var start = "off";
+var press = false;
+var sequence = [];
+var playerseq = [];
+var buttons = ["green", "red", "yellow", "blue"];
+
+// from lecture files
+
+var greenButton = document.getElementById("greenbutton");
+greenButton.addEventListener("click", function () { flash(this); }, false);
+
+var redButton = document.getElementById("redbutton");
+redButton.addEventListener("click", function () { flash(this); }, false);
+
+var yellowButton = document.getElementById("yellowbutton");
+yellowButton.addEventListener("click", function () { flash(this); }, false);
+
+var blueButton = document.getElementById("bluebutton");
+blueButton.addEventListener("click", function () { flash(this); }, false);
+
+// from https://www.w3schools.com/jquery/event_click.asp
+$("#midbox").on("click", function() 
+{
+    if (start == "off")
+    {
+        $("#light").css("background-color", "green");
+        start = "on";
+        sequence = [];
+        playersequence = [];
+        fill();
+        selectPattern();
+        $("#rightbox").html(sequence.length);
+    }
+    else if(start == "on")
+    {
+        $("#light").css("background-color", "red");
+        start = "off";
+        reset();
+
+    }
+});
+
+$(".button").click(function() 
+{
+    if (press) 
+    {
+        if (playerseq.length === sequence.length) 
+        {
+            press = false;
+            //   $(".circle").css("cursor", "default");
+            testSeq(sequence, playerseq);
+        } 
+        // else 
+        // {
+        //     var seq = playerseq;        //change
+        //     seqLoop(seq, playerseq);
+        // }
+    }
+})
+
+function blinkGreen() 
+{
+    greenButton.click();
+}
+
+document.getElementById('greenbutton').addEventListener('click', function () 
+{
+    if(press) 
+    {
+        playerseq.push(buttons[0]);
+    }
+});
+
+function blinkRed() 
+{
+    redButton.click();
+}
+document.getElementById('redbutton').addEventListener('click', function () 
+{
+    if(press) 
+    {
+        playerseq.push(buttons[1]);
+    }
+});
+
+function blinkYellow() 
+{
+    yellowButton.click();
+}
+document.getElementById('yellowbutton').addEventListener('click', function () 
+{
+    if(press) 
+    {
+        playerseq.push(buttons[2]);
+    }
+});
+
+function blinkBlue() 
+{
+    blueButton.click();
+}
+document.getElementById('bluebutton').addEventListener('click', function () 
+{
+    if(press) 
+    {
+        playerseq.push(buttons[3]);
+    }
+});
+
+
+function selectPattern()
+{
+    // https://www.w3schools.com/jsref/met_win_settimeout.asp
+    var offset = 0;
+    // https://stackoverflow.com/questions/12264388/jquery-each-callback/12264449
+    $.each(sequence, function(i, callback) 
+    // for(var i = 0; i < sequence.length; i++)
+    {
+        setTimeout(function() 
+        {
+            if (sequence[i] === "green") 
+            {
+                blinkGreen();
+            } 
+            else if (sequence[i] === "red") 
+            {
+                blinkRed();
+            } 
+            else if (sequence[i] === "yellow") 
+            {
+                blinkYellow()
+            } 
+            else if (sequence[i] === "blue") 
+            {
+                blinkBlue();
+            }
+          if (i === sequence.length - 1) 
+          {
+            press = true;
+          }
+        }, 1000 + offset);
+        offset += 1500;
+    });
+}
+
+// function seqLoop(s1, s2) 
+// {
+//     for (var i = s1.length; i--;) 
+//     {
+//         if (s1[i] !== s2[i]) 
+//         {
+//             if (strict) 
+//             {
+//             //     $(".score").html("!!");
+//             //     press = false;
+//             //     $(".segment").css("cursor", "default");
+//             //     setTimeout(function() 
+//             //     {
+//             //         reset();
+//             //         getCol();
+//             //         selectPattern();
+//             //         $(".score").html(seq.length);
+//             //     }, 2000);
+//             } 
+//             else 
+//             {
+//                 $("#rightbox").html("00");
+//                 press = false;
+//                 //$(".button").css("cursor", "default");
+//                 setTimeout(function() 
+//                 {
+//                     playerseq = [];
+//                     selectPattern();
+//                     $("#rightbox").html(sequence.length)
+//                 }, 2000);
+//             }
+//             return false;
+//         }
+//     }
+// }
+
+function testSeq(arr1, arr2) 
+{
+  for (var i = arr1.length; i--;)             //trad loop
+   {
+        if (arr1[i] !== arr2[i]) 
+        {
+            $("#rightbox").html("00");
+            press = false;
+            //reset();
+            //$(".button").css("cursor", "default");
+            //setTimeout(function() 
+            //{
+            playerseq = [];
+            sequence = [];
+            document.getElementById('#midbox').click();
+            start = "off"
+            $("#light").css("background-color", "red");
+            selectPattern();
+            return false;
+        }
+    }
+    alert(playerseq);
+    playerseq = [];
+    fill();
+    selectPattern();
+    $("#rightbox").html(sequence.length);
+    return true;
+}
+
+function reset()
+{
+    sequence = [];
+    playerseq = [];
+    press = "false";
+    $(".rightbox").html("00");
+}
+
+// function latestScore()
+// {
+//     $("#rightbox").html(count);
+// }
+
+function fill() 
+{
+    return sequence.push(buttons[Math.floor(Math.random() * buttons.length)]);
+};
+
+// from lecture files
+function pulse(cbfunc, delay, reps) 
+{
+    let r = 0;
+    let intervalID = window.setInterval(function () 
+    {
+        cbfunc();
+        if (++r === reps) 
+        {
+            window.clearInterval(intervalID);
+        }
+    }, delay);
+}
+
+function flash(e) 
+{
+    var myFlashableElement = e;
+    myFlashableElement.classList.remove("flashElement");
+    void myFlashableElement.offsetWidth; /* trick to trigger reflow */
+    myFlashableElement.classList.add("flashElement");
+}
+</script>
+</body>
+</html>

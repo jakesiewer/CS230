@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- Built on top of code given by John Keating -->
+
+<head>
+    <title>CRUD - Database Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Use Bootstrap for the form styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Use W3.CSS for the Modal -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Extra Styles for the Bootstrap Forms */
+        h1 {
+            font: 30px Verdana;
+            text-align: center;
+        }
+        h2 {
+            font: 20px Verdana;
+            text-align: center;
+        }
+        legend {
+            padding: 10px;
+            font: 30px Verdana
+        }
+        
+        /* styles for table */
+        th, td, p, input, h3 {
+            font:11px 'Verdana';
+        }
+        table, th, td {
+            border: solid 1px #ddd;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        th {
+            font-weight:bold;
+        }
+        /* select:required:invalid {
+            color: gray;
+        }
+        option[value=""][disabled] {
+            display: none;
+        }       
+        option {
+            color: black;
+        } */
+    </style>
+</head>
+
+<body>
+    <h1>CRUD - Database Demo</h1>
+    <h2>Jake Siewer</h2>
+
+    <br />
+
+    <!-- 
+        Bootstrap Styled Form: Add User to Database 
+        Generated using the Bootsnipp Form Builder and Generator for Bootstrap
+        https://bootsnipp.com/forms
+    -->
+    <div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Create info form -->
+                <form id="addInfoForm" class="form-horizontal">
+                    <form class="form-horizontal">
+                        <fieldset>
+                        
+                        <!-- Form Name -->
+                        <legend>Personal Information</legend>
+                        
+                        <!-- Text dropdown-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="title">Title</label>  
+                          <div class="col-md-4">
+                          <select id="title" name="title" class="form-control">
+                            <option value="0"></option>
+                            <option value="Mx">Mx</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Miss">Miss</option>
+                            <option value="Dr">Dr</option>
+                            <option value="Other">Other</option>
+                          </select>
+                          <span class="help-block">Please select your title</span>  
+                          </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="firstname">First Name(s)*</label>  
+                          <div class="col-md-4">
+                          <input id="firstname" name="firstname" type="text" placeholder="First Name" class="form-control input-md" required="">
+                          <span class="help-block">Please enter your first name</span>  
+                          </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="surname">Surname*</label>  
+                          <div class="col-md-4">
+                          <input id="surname" name="surname" type="text" placeholder="Surname" class="form-control input-md" required="">
+                          <span class="help-block">Please enter your surname</span>  
+                          </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="mobile">Mobile*</label>  
+                          <div class="col-md-4">
+                          <input id="mobile" name="mobile" type="text" placeholder="Mobile" class="form-control input-md" required="">
+                          <span class="help-block">Please enter your mobile</span>  
+                          </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="emailaddress">Email Address*</label>  
+                          <div class="col-md-4">
+                          <input id="emailaddress" name="emailaddress" type="text" placeholder="Email Address" class="form-control input-md" required="">
+                          <span class="help-block">Please enter your email address</span>  
+                          </div>
+                        </div>
+                        
+                        
+                        <!-- Form Name -->
+                        <legend>Shipping Information</legend>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="addressline1">Address Line 1*</label>  
+                          <div class="col-md-4">
+                          <input id="addressline1" name="addressline1" type="text" placeholder="Address Line 1" class="form-control input-md" required="">
+                          <span class="help-block">Please enter address line 1</span>  
+                          </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="addressline2">Address Line 2</label>  
+                          <div class="col-md-4">
+                          <input id="addressline2" name="addressline2" type="text" placeholder="Address Line 2" class="form-control input-md">
+                          <span class="help-block">Please enter address line 2</span>  
+                          </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="town">Town*</label>  
+                          <div class="col-md-4">
+                          <input id="town" name="town" type="text" placeholder="Town" class="form-control input-md" required="">
+                          <span class="help-block">Please enter your town</span>  
+                          </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="countycity">County/City*</label>  
+                          <div class="col-md-4">
+                          <input id="countycity" name="countycity" type="text" placeholder="County/City" class="form-control input-md" required="">
+                          <span class="help-block">Please enter your county/city</span>  
+                          </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="eircode">Eircode</label>  
+                          <div class="col-md-4">
+                          <input id="eircode" name="eircode" type="text" placeholder="Eircode" class="form-control input-md">
+                          <span class="help-block">Please enter your eircode</span>  
+                          </div>
+                        </div>
+                        
+                        <!-- Button -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="submitinfo"></label>
+                          <div class="col-md-4">
+                            <button id="submitinfo" name="submitinfo" class="btn btn-primary">Submit Information</button>
+                          </div>
+                        </div>
+                        </fieldset>
+                        </form>
+                        
+                        </form>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <!-- 
+        Bootstrap Styled Form: Add User to Database 
+        Generated using the Bootsnipp Form Builder and Generator for Bootstrap
+        https://bootsnipp.com/forms
+    -->
+    <div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- retrieve info form -->
+                <form id="getUserDatabaseForm" class="form-horizontal">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Retrieve User Data</legend>
+
+
+                        <p id='showData'></p>
+                        
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="showUserDatabase">User Database</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" id="showUserDatabase"
+                                    name="showUserDatabase">Retrieved Database displayed here!</textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="submit"></label>
+                            <div class="col-md-4">
+                                <input type="submit" value="Get User Database" class="btn btn-primary">
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- update info form -->
+                <form id="updateInfoForm" class="form-horizontal">
+                    <fieldset>
+                    
+                    <!-- Form Name -->
+                    <legend>Update Information</legend>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="updateid">Customer ID</label>  
+                      <div class="col-md-4">
+                      <input id="updateid" name="updateid" type="text" placeholder="Customer ID" class="form-control input-md" required="">
+                      <span class="help-block">Please enter customer id to update</span>  
+                      </div>
+                    </div>
+                    
+                    <!-- Text dropdown-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="newtitle">New Title*</label>  
+                      <div class="col-md-4">
+                        <select id="newtitle" name="newtitle" class="form-control">
+                            <option value="0"></option>
+                            <option value="Mx">Mx</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Miss">Miss</option>
+                            <option value="Dr">Dr</option>
+                            <option value="Other">Other</option>
+                          </select>
+                      <span class="help-block">Please enter new title</span>  
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="newmobile">New Mobile*</label>  
+                      <div class="col-md-4">
+                      <input id="newmobile" name="newmobile" type="text" placeholder="New Mobile" class="form-control input-md" required="">
+                      <span class="help-block">Please enter new mobile</span>  
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="newemail">New Email*</label>  
+                      <div class="col-md-4">
+                      <input id="newemail" name="newemail" type="text" placeholder="New Email" class="form-control input-md" required="">
+                      <span class="help-block">Please enter new  email</span>  
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="newaddress1">New Address Line 1</label>  
+                      <div class="col-md-4">
+                      <input id="newaddress1" name="newaddress1" type="text" placeholder="New Address Line 1" class="form-control input-md">
+                      <span class="help-block">Please enter new address line 1</span>  
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="newaddress2">New Address Line 2</label>  
+                      <div class="col-md-4">
+                      <input id="newaddress2" name="newaddress2" type="text" placeholder="New Address Line 2" class="form-control input-md">
+                      <span class="help-block">Please enter new address line 2</span>  
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="newtown">New Town</label>  
+                      <div class="col-md-4">
+                      <input id="newtown" name="newtown" type="text" placeholder="New Town" class="form-control input-md">
+                      <span class="help-block">Please enter new town</span>  
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="newcitycounty">New City/County</label>  
+                      <div class="col-md-4">
+                      <input id="newcitycounty" name="newcitycounty" type="text" placeholder="New City/County" class="form-control input-md">
+                      <span class="help-block">Please enter new city/county</span>  
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="neweircode">New Eircode</label>  
+                      <div class="col-md-4">
+                      <input id="neweircode" name="neweircode" type="text" placeholder="New Eircode" class="form-control input-md">
+                      <span class="help-block">Please enter new eircode</span>  
+                      </div>
+                    </div>
+                    
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="updateinfo"></label>
+                      <div class="col-md-4">
+                        <button id="updateinfo" name="updateinfo" class="btn btn-primary">Update</button>
+                      </div>
+                    </div>
+                    
+                    </fieldset>
+                    </form>
+                    
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+        <!-- delete info form         -->
+        <form id="deleteInfoForm" class="form-horizontal">
+            <fieldset>
+            
+            <!-- Form Name -->
+            <legend>Delete Information</legend>
+            
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="deletefirstname">First Name*</label>  
+                <div class="col-md-4">
+                <input id="deletefirstname" name="deletefirstname" type="text" placeholder="First Name" class="form-control input-md" required="">
+                <span class="help-block">Please enter First Name</span>  
+                </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="deletelastname">Last Name*</label>  
+                <div class="col-md-4">
+                <input id="deletelastname" name="deletelastname" type="text" placeholder="Last Name " class="form-control input-md" required="">
+                <span class="help-block">Please enter Last name</span>  
+                </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="deleteemail">Email*</label>  
+                <div class="col-md-4">
+                <input id="deleteemail" name="deleteemail" type="text" placeholder="Email" class="form-control input-md" required="">
+                <span class="help-block">Please enter email</span>  
+                </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="deletemobile">Mobile*</label>  
+                <div class="col-md-4">
+                <input id="deletemobile" name="deletemobile" type="text" placeholder="Mobile" class="form-control input-md" required="">
+                <span class="help-block">Please enter mobile</span>  
+                </div>
+            </div>
+            
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="deletebutton"></label>
+                <div class="col-md-4">
+                <button id="deletebutton" name="deletebutton" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+            
+            </fieldset>
+            </form>
+        </div>
+    </div>
+    <!-- 
+        Modal Popup used to confirm User Data was sent and added to Database 
+        W3.CSS Styled Form generated using W3.CSS modal demos
+        https://www.w3schools.com/w3css/w3css_modal.asp
+    -->
+    <div id="modalUserAdded" class="w3-modal w3-animate-opacity">
+        <div class="w3-modal-content w3-card-4">
+            <header class="w3-container w3-blue-grey">
+                <span onclick="document.getElementById('modalUserAdded').style.display='none'"
+                    class="w3-button w3-large w3-display-topright">&times;</span>
+                <!-- <h2>User Added to Database!</h2> -->
+            </header>
+            <div class="w3-container">
+                <p></p>
+                <p id="modalUserAddedMessage">Message Text</p>
+            </div>
+            <footer class="w3-container w3-blue-grey">
+                <p></p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- 
+        jQuery Scripts used to implement form processing and Ajax functionality
+        https://www.w3schools.com/w3css/w3css_modal.asp
+    -->
+    <script>
+         // retrieve from or send info to the mysql dattabase with this function
+        $(document).ready(function () {
+
+            // handle "Add User to Database" submit button click
+            $( "#submitinfo" ).click(function() {
+                $('#addInfoForm').submit(function (e) {
+                    console.log("hello");
+                    var user = {
+                        title: $('select[name=title]').val(),
+                        firstname: $('input[name=firstname]').val(),
+                        surname: $('input[name=surname]').val(),
+                        mobile: $('input[name=mobile]').val(),
+                        email: $('input[name=emailaddress]').val(),
+                        addressline1: $('input[name=addressline1]').val(),
+                        addressline2: $('input[name=addressline2]').val(),
+                        town: $('input[name=town]').val(),
+                        countycity: $('input[name=countycity]').val(),
+                        eircode: $('input[name=eircode]').val(),
+                    };
+                    // post data to backend for it to be loaded to table
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:8000/api/user',
+                        data: user
+                    })
+                        .done(function (data) {
+                            // reset the form for next time!
+                            $('select[name=title]').val('');
+                            $('input[name=firstname]').val('');
+                            $('input[name=surname]').val('');
+                            $('input[name=mobile]').val('');
+                            $('input[name=emailaddress]').val('');
+                            $('input[name=addressline1]').val('');
+                            $('input[name=addressline2]').val('');
+                            $('input[name=town]').val('');
+                            $('input[name=countycity]').val('');
+                            $('input[name=eircode]').val('');
+                            // show confirmation message from API
+                            showUserModal(data);
+                        });
+                    e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                        // meand that clicked submit button will not take the browser to a new URL.
+                });
+            });
+
+            
+            // handle "Get User Database" submit button click
+            $('#getUserDatabaseForm').submit(function (e) {
+               
+                // get data from table handled by backend
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:8000/api/user'
+                })
+                    // once done load it it into table
+                    .done(function (data) {
+                        
+                        // push data into array
+                        var col = [];
+                        for (var i = 0; i < data.length; i++) 
+                        {
+                            for (var key in data[i]) 
+                            {
+                                if (col.indexOf(key) === -1) 
+                                {
+                                    col.push(key);
+                                }
+                            }
+                        }
+
+                        // Create a table.
+                        var table = document.createElement("table");
+
+                        // Create table header row using the extracted headers above.
+                        var tr = table.insertRow(-1);                   // table row.
+
+                        for (var i = 0; i < col.length; i++) {
+                            var th = document.createElement("th");      // table header.
+                            th.innerHTML = col[i];
+                            tr.appendChild(th);
+                        }
+
+                        // add json data to the table as rows.
+                        for (var i = 0; i < data.length; i++) 
+                        {
+
+                            tr = table.insertRow(-1);
+
+                            for (var j = 0; j < col.length; j++) 
+                            {
+                                var tabCell = tr.insertCell(-1);
+                                tabCell.innerHTML = data[i][col[j]];
+                            }
+                        }
+
+                        // Now, add the newly created table with json data, to a container.
+                        var divShowData = document.getElementById('showData');
+                        divShowData.innerHTML = "";
+                        divShowData.appendChild(table);
+
+                        // display the database in the textarea and trigger an input change event
+                        $('#showUserDatabase').val(JSON.stringify(data, null, 2)).trigger('input');
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.      
+
+            });
+
+
+
+
+
+
+            // handle "Update Database" submit button click
+            $( "#updateinfo" ).click(function() {
+                $('#updateInfoForm').submit(function (e) {
+                    // prepare data to be sent
+                    var update = {
+                        updateid: $('input[name=updateid]').val(),
+                        newtitle: $('select[name=newtitle]').val(),
+                        newmobile: $('input[name=newmobile]').val(),
+                        newemail: $('input[name=newemail]').val(),
+                        newaddress1: $('input[name=newaddress1]').val(),
+                        newaddress2: $('input[name=newaddress2]').val(),
+                        newtown: $('input[name=newtown]').val(),
+                        newcitycounty: $('input[name=newcitycounty]').val(),
+                        neweircode: $('input[name=neweircode]').val(),
+                    };
+                    console.log(update);
+                    // send data
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:8000/api/update',
+                        data: update
+                    })
+                        .done(function (update) {
+                            // reset the form for next time!
+                            $('input[name=updateid]').val('');
+                            $('select[name=newtitle]').val('');
+                            $('input[name=newmobile]').val('');
+                            $('input[name=newemail]').val('');
+                            $('input[name=newaddress1]').val('');
+                            $('input[name=newaddress2]').val('');
+                            $('input[name=newtown]').val('');
+                            $('input[name=newcitycounty]').val('');
+                            $('input[name=neweircode]').val('');
+                            // show confirmation message from API
+                            showUserModal(update);
+                        });
+                    e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                        // meand that clicked submit button will not take the browser to a new URL.
+                });
+            });
+
+            // deelte data from database
+            $('#deleteInfoForm').submit(function (e) {
+                var delete_user = {
+                    deletefirstname: $('input[name=deletefirstname]').val(),
+                    deletelastname: $('input[name=deletelastname]').val(),
+                    deleteemail: $('input[name=deleteemail]').val(),
+                    deletemobile: $('input[name=deletemobile]').val()
+                };
+                //send data to be deleted
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/delete_user',
+                    data: delete_user
+                })
+                    .done(function (delete_user) {
+                        // reset the form for next time!
+                        $('input[name=deletefirstname]').val('');
+                        $('input[name=deletelastname]').val('');
+                        $('input[name=deleteemail]').val('');
+                        $('input[name=deletemobile]').val('');
+                        // show confirmation message from API
+                        showUserModal(delete_user);
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.
+            });
+
+            // some fun jQuery here that is not necessary for operation
+            // this sets an event handler to resize the textarea after 
+            // a change event is triggered the call is triggered earlier
+            // after the content received from the API is written to the
+            // textarea it resizes to the size of the contained text
+            // just a vanity addition really!
+            $("#showUserDatabase").on("input", function () {
+                this.style.height = (this.scrollHeight) + "px;overflow-y:hidden;";
+                this.style.height = "auto";
+                this.style.height = (this.scrollHeight) + "px";
+            });
+
+        });
+
+        // Show the "User Added" Modal - this is a basic demo - change it!
+        function showUserModal(data) {
+            document.getElementById('modalUserAddedMessage').innerHTML = data;
+            document.getElementById('modalUserAdded').style.display = 'block';
+        }
+
+    </script>
+
+</body>
+
+</html>

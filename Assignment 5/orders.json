@@ -1,0 +1,82 @@
+[{
+  "_id": {
+    "$oid": "607f5b8246e2999cc44220ef"
+  },
+  "Customer ID": {
+    "$oid": "6079e39ec6cf6836d4a777c6"
+  },
+  "Receipt": {
+    "Item 1": "6079e5da8df2f6ecbe1dd321(updated)",
+    "Item 2": {
+      "$oid": "6079e7858df2f6ecbe1dd329"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "607f5cbd13a6f9c7e85db3fd"
+  },
+  "Customer ID": {
+    "$oid": "607cc04ab9d86f79b0a046e4"
+  },
+  "Receipt": {
+    "Item 1": "6079e8028df2f6ecbe1dd32b(updated)"
+  }
+},{
+  "_id": {
+    "$oid": "607f5e603714aa3ab8efd568"
+  },
+  "Customer ID": {
+    "$oid": "607ad89f160c3196d0158eee"
+  },
+  "Receipt": {
+    "Item 1": "6079e7708df2f6ecbe1dd328(updated)",
+    "Item 2": {
+      "$oid": "6079e8028df2f6ecbe1dd32b"
+    },
+    "Item 3": {
+      "$oid": "6079e7dd8df2f6ecbe1dd32a"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "60801b156d3be2c3604c6909"
+  },
+  "Customer ID": {
+    "$oid": "607cc04ab9d86f79b0a046e4"
+  },
+  "Receipt": {
+    "Item 1": {
+      "$oid": "6079e7708df2f6ecbe1dd328"
+    },
+    "Item 2": {
+      "$oid": "6079e47e8df2f6ecbe1dd31e"
+    },
+    "Item 3": {
+      "$oid": "6079e5a88df2f6ecbe1dd320"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "60801bfdc13009c3b4c95242"
+  },
+  "Customer ID": {
+    "$oid": "60801bfcc13009c3b4c95240"
+  },
+  "Receipt": {
+    "Item 1": {
+      "$oid": "6079e5da8df2f6ecbe1dd321"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6084a966fca8613294c8e045"
+  },
+  "Customer ID": {
+    "$oid": "6084a966fca8613294c8e043"
+  },
+  "Receipt": {
+    "Item 1": {
+      "$oid": "6079e5a88df2f6ecbe1dd320"
+    }
+  }
+}]

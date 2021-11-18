@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Convert JavaScript Object Data to HTML Table</title>
+
+    <script>
+        function makeEditable() {
+            document.getElementById("contentEditableSpan").contentEditable = true;
+            document.getElementById("message").innerHTML = "MESSAGE: The SPAN element is now editable!";
+        }
+        function makeUnEditable() {
+            document.getElementById("contentEditableSpan").contentEditable = false;
+            document.getElementById("message").innerHTML = "MESSAGE: The SPAN element is no longer editable!";
+        }
+
+    </script>
+
+    <style>
+        p,
+        span,
+        button {
+            font: 14px Verdana;
+        }
+
+        p,
+        span,
+        button {
+            font: 20px Verdana;
+        }
+
+        #message {font: 14 px Verdana; color: red;}
+
+        #content {font: 14 px Verdana; color: blue;}
+
+    </style>
+</head>
+
+<body>
+
+    <h1>ContentEditable Demo</h1>
+
+    <span id="contentEditableSpan">This is a content-editable SPAN element. Click the button to make it editable!</span>
+    <p>
+        <button onclick="makeEditable()">Enable Editing!</button>
+        <button onclick="makeUnEditable()">Disable Editing!</button>
+    </p>
+
+    <p id="message"></p>
+
+    <p id="content"></p>
+
+    <script>
+        contentEditableSpan.addEventListener("input", function () {
+            document.getElementById("content").innerHTML = "CONTENT: " + document.getElementById("contentEditableSpan").innerHTML;
+        });
+    </script>
+
+</body>
+
+</html>

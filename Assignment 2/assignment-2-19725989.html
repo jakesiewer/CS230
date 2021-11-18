@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assignment-2-19725989.css">
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous">
+</script>
+
+</head>
+<body>
+<body onload="checkCookie()"></body>
+<div class="full-height">
+    <div class="circle center">
+        <div class="pointer">
+            <span id="greenbutton" class="button border" ></span>
+            <span id="redbutton" class="button border"></span>
+            <span id="yellowbutton" class="button border"></span>
+            <span id="bluebutton" class="button border"></span>
+        </div>
+        <span id="light" class="button"></span>
+        <span id="midbox" class="box center pointer">START</span>
+        <span id="leftbox" class="box">00</span>
+        <span id="rightbox" class="box">00</span>
+    </div>
+    <div class="textbox"></div>
+</div>
+
+<script>
+var buttons = ["green", "red", "yellow", "blue"];
+var seq = [];
+var inputseq = [];
+var start = "off";
+//var myStopFunction = setInterval(checkInput, 5000);   //w3 schools
+
+
+$("#midbox").on("click", function() 
+{
+    for(var i = 0; i < 20; i++)
+    {
+        if (start == "off")
+        {
+            $("#light").css("background-color", "green");
+            start = "on";
+            inputseq = [];
+            fill();
+            //alert(seq);
+            var sequence = seq;
+            playSeq(seq);
+            checkPlayerSeq(sequence, inputseq);
+            
+            
+            // trying to execute asynchronously, not working
+
+            // async function hold()
+            // {
+            //     const check = await playSeq(sequence);
+            //     const finish = await checkPlayerSeq(sequence, inputseq);
+            // }
+            // hold();
+
+            $("#rightbox").html(seq.length);
+        }
+        else if(start == "on")
+        {
+            $("#light").css("background-color", "red");
+            start = "off";
+
+        }
+        break;
+    }
+});
+
+var fill = function() 
+{
+    return seq.push(buttons[Math.floor(Math.random() * buttons.length)]);
+};
+
+//john keating lecture code(pulse, flash, blink)
+
+function pulse(cbfunc, delay, reps) 
+{
+    let r = 0;
+    let intervalID = window.setInterval(function () 
+    {
+        cbfunc();
+        if (++r === reps) 
+        {
+            window.clearInterval(intervalID);
+        }
+    }, delay);
+}
+
+function flash(e) 
+{
+    var myFlashableElement = e;
+    myFlashableElement.classList.remove("flashElement");
+    void myFlashableElement.offsetWidth;
+    myFlashableElement.classList.add("flashElement");
+}
+
+var greenButton = document.getElementById("greenbutton");
+greenButton.addEventListener("click", function () { flash(this); }, false);
+
+var redButton = document.getElementById("redbutton");
+redButton.addEventListener("click", function () { flash(this); }, false);
+
+var yellowButton = document.getElementById("yellowbutton");
+yellowButton.addEventListener("click", function () { flash(this); }, false);
+
+var blueButton = document.getElementById("bluebutton");
+blueButton.addEventListener("click", function () { flash(this); }, false);
+
+// make buttons blink
+function blinkRed() 
+{
+    redButton.click();
+}
+
+function blinkGreen() 
+{
+    greenButton.click();
+}
+
+function blinkYellow() 
+{
+    yellowButton.click();
+}
+
+function blinkBlue() 
+{
+    blueButton.click();
+}
+
+//randomly generate sequence
+function fill() 
+{
+    return sequence.push(buttons[Math.floor(Math.random() * buttons.length)]);
+};
+
+function reset()
+{
+    sequence = [];
+    playerseq = [];
+    $(".rightbox").html("00");
+}
+
+// check user user generated sequence
+function checkPlayerSeq(seqarr, userarr)
+{
+    var time2 = 0;
+    // snippet from https://stackoverflow.com/questions/5202403/how-to-add-pause-between-each-iteration-of-jquery-each
+    
+    $.each(seqarr, function(i, callback) 
+    // for(var i = 0; i < seq.length; i++)
+    {
+        var checkInput = setTimeout(function()
+        {
+            $(".textbox").html("Click!");
+            var count = 0;
+            document.getElementById('greenbutton').onclick = function () 
+            {
+                userarr.push(buttons[0]);
+                $(".textbox").html("Green button clicked");
+                if(userarr[i] === seqarr[i])
+                {
+                    $(".textbox").html("Correct!");
+                    //continue;
+                }
+                else
+                {
+                    $(".textbox").html("Wrong!");
+                    reset();
+                }
+
+                clearTimeout(checkInput);
+            };
+
+            document.getElementById('redbutton').onclick = function () 
+            {
+                userarr.push(buttons[1]);
+                $(".textbox").html("Red button clicked");
+                if(userarr[i] === seqarr[i])
+                {
+                    $(".textbox").html("Correct!");
+                    //continue;
+                }
+                else
+                {
+                    $(".textbox").html("Wrong!");
+                    reset();
+                }
+
+                    clearTimeout(checkinput);
+                };
+
+            document.getElementById('yellowbutton').onclick = function () 
+            {
+                userarr.push(buttons[2]);
+                $(".textbox").html("Yellow button clicked");
+                if(userarr[i] === seqarr[i])
+                {
+                    $(".textbox").html("Correct!");
+                    //continue;
+                }
+                else
+                {
+                    $(".textbox").html("Wrong!");
+                    reset();
+                }
+                
+                clearTimeout(checkinput);
+            };
+
+            document.getElementById('bluebutton').onclick = function () 
+            {
+                userarr.push(buttons[3]);
+                $(".textbox").html("Blue button clicked");
+                if(userarr[i] === seqarr[i])
+                {
+                    $(".textbox").html("Correct!");
+                    //continue;
+                }
+                else
+                {
+                    $(".textbox").html("Wrong!");
+                    reset();
+                }
+
+                clearTimeout(checkinput);
+            };
+        }, 1000 + time2);
+        time2 += 1500;
+    });
+}
+
+// function to make generated sequence blink
+function playSeq(sequence) 
+{
+    // snippet from https://stackoverflow.com/questions/5202403/how-to-add-pause-between-each-iteration-of-jquery-each
+    var time = 0;
+    $.each(sequence, function(i, callback) 
+    {
+        setTimeout(function() 
+        {
+            if (sequence[i] === "green") 
+            {
+                flash(document.getElementById('greenbutton'));
+            } 
+            else if (sequence[i] === "red") 
+            {
+                flash(document.getElementById('redbutton'));
+            } 
+            else if (sequence[i] === "yellow") 
+            {
+                flash(document.getElementById('yellowbutton'));
+            } 
+            else if (sequence[i] === "blue") 
+            {
+                flash(document.getElementById('bluebutton'));
+            }
+        }, 1000 + time);
+        time += 2000;
+    });
+}
+
+//john keating md file code, (not changed)
+function setCookie(cname, cvalue, exdays) 
+{
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) 
+{
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) 
+    {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') 
+        {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) 
+        {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() 
+{
+    var username = getCookie("username");
+    if (username != "") 
+    {
+        alert("Welcome again " + username);
+    } 
+    else 
+    {
+        username = prompt("Please enter your name:", "");
+        if (username != "" && username != null) 
+        {
+            setCookie("username", username, 365);
+        }
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+html, body{
+    height: 100%;
+    margin: 0;
+}
+.full-height{
+    height: 100%;
+    background: white;
+}
+.button
+{
+    position: absolute;
+    height: 2px;
+    width: 2px;
+    background-color: black;
+    border-radius: 50%;
+}
+.circle{
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    background-color: black;
+    box-shadow: inset 0px 2px 0px 0px #6e6e6e;
+    border-radius: 50%;
+}
+.center{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+#greenbutton{
+    background-color: green;
+    box-shadow: inset 0px 2px 0px 0px #6ab665;
+    height: 100px;
+    width: 100px;
+    left: -25%;
+    top: -25%;    
+}
+/* #greenbutton:active{
+    background: rgb(41, 184, 41);
+} */
+#redbutton{
+    background-color: red;
+    box-shadow: inset 0px 2px 0px 0px #f29c93;
+    height: 100px;
+    width: 100px;
+    left: 65%;
+    top: -25%;  
+}
+/* #redbutton:active{
+    background: rgb(255, 115, 115);
+} */
+#yellowbutton{
+    background-color: rgb(238, 210, 49);
+    box-shadow: inset 0px 2px 0px 0px #f5f3d8;
+    height: 100px;
+    width: 100px;
+    left: -25%;
+    top: 65%;  
+}
+/* #yellowbutton:active{
+    background: rgb(245, 245, 132);
+} */
+#bluebutton{
+    background-color: blue;
+    box-shadow: inset 0px 2px 0px 0px #6d74d3;
+    height: 100px;
+    width: 100px;
+    left: 65%;
+    top: 65%;  
+}
+/* #bluebutton:active{
+    background: rgb(66, 66, 248);
+} */
+.border{
+    /* box-shadow: 0px 0px 0px 10px black; */
+    border: 10px solid black;
+}
+#light{
+    background-color: red;
+    height: 4%;
+    width: 4%;
+    left: 50%;
+    top: 68%;
+    transform: translate(-50%, -50%);
+}
+.box{
+    position: absolute;
+    height: 20px;
+    width: 60px;
+    border-radius: 3px;
+    background-color: rgb(187, 187, 187);
+    font-family: Orbitron;
+    font-size: 12px;
+    color: black;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+}
+#midbox{
+    position: absolute;
+}
+#midbox:active{
+    background: rgb(112, 112, 112);
+}
+#leftbox{
+    width: 25px;
+    left: 27%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+#rightbox{
+    width: 25px;
+    left: 73%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.textbox{
+    position: absolute;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    width: 150px;
+    height: 25px;
+    border-radius: 3px;
+    background-color: white;
+    font-family: Orbitron;
+    top: 65%;
+    right: 50%;
+    transform: translate(50%, 50%);
+    font-size: 12px;
+}
+.pointer{
+    cursor:pointer;
+}
+
+.flashElement {
+    animation: flash 1.0s;
+}
+
+
+@keyframes flash {
+
+    0% {
+        background-color: white;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

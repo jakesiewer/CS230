@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="assignment-1 jakesiewer.js"></script>
+<style>
+.container{
+    height: 500px;
+    width: 50%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    top: 200px; 
+}
+.center 
+{
+  margin: auto;
+  width: 100%;
+  border: 3px lightblue;
+  padding: 10px;
+}
+.tri{
+    position: absolute;
+	border-bottom: 100px solid red;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+}
+.trapezoid {
+    position: absolute;
+    top: 120px;
+	border-bottom: 83.3px solid #555;
+	border-left: 62.5px solid transparent;
+	border-right: 62.5px solid transparent;
+	height: 0;
+	width: 165px;
+}
+.firsttrapezoid{
+    position: absolute;
+    top: 426px;
+	border-bottom: 83.3px solid green;
+	border-left: 62.5px solid transparent;
+	border-right: 62.5px solid transparent;
+	height: 0;
+	width: 626px;
+}
+.secondtrapezoid{
+    position: absolute;
+    top: 344px;
+	border-bottom: 83.3px solid rgb(139, 87, 9);
+	border-left: 62.5px solid transparent;
+	border-right: 62.5px solid transparent;
+    height: 0;
+    width: 502px; 
+}
+.thirdtrapezoid{
+    position: absolute;
+    top: 261px;
+	border-bottom: 83.3px solid rgb(61, 150, 233);
+	border-left: 62.5px solid transparent;
+	border-right: 62.5px solid transparent;
+    width: 377px;
+}
+.fourthtrapezoid{
+    position: absolute;
+    top: 178px;
+	border-bottom: 83.3px solid yellow;
+	border-left: 62.5px solid transparent;
+	border-right: 62.5px solid transparent;
+    width: 252px; 
+}
+.smalltrap{
+    position: absolute;
+    top: 119px;
+	border-bottom: 50px solid orange;
+	border-left: 37.5px solid transparent;
+	border-right: 37.5px solid transparent;
+	height: 0;
+	width: 163px;
+}
+.midcircle {
+  position: absolute;
+  top: 27px;
+  width: 32px;
+  height: 32px;
+  background: grey;
+  box-shadow: 0px 0px 0px 1px black;
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.leftcircle {
+  position: absolute;
+  top: 27px;
+  left: 258px;
+  width: 32px;
+  height: 32px;
+  background: grey;
+  box-shadow: 0px 0px 0px 1px black;
+  border-radius: 50%;
+}
+.leftcircle:active{
+    background: darkgrey;
+}
+.rightcircle {
+  position: absolute;
+  top: 27px;
+  left: 326px;
+  width: 32px;
+  height: 32px;
+  background: grey;
+  box-shadow: 0px 0px 0px 1px black;
+  border-radius: 50%;
+}
+.rightcircle:active{
+    background: darkgrey
+}
+
+.fonttype{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    font-family: Calibri;
+}
+
+.hide {
+    display: none;
+}
+.wrapper:hover .hide {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+}
+.pointer{
+    cursor:pointer;
+}
+
+.textcontainer{
+    height: 60px;
+    width: 8%;
+    position: relative;
+    justify-content: center;
+    top: 200px; 
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    font-family: Calibri;
+    font-weight: bold;
+}
+
+.dateboxstyle{
+    background-color: grey;
+    font-family: Calibri;
+    color: black;
+    font-size: 15px
+}
+
+</style>
+</head>
+<body>
+
+<div class="container center fonttype">
+    <div class="tri wrapper">
+        <span class="leftcircle hide pointer" style="top: 60px; left: -49px"
+        onclick="count6(this.id)" id="plus">+</span>
+
+        <span class="midcircle" style="top: 60px; right: -16px">
+            <span id="counter6">0</span>
+        </span>
+
+        <span class="rightcircle hide pointer" style="top: 60px; left: 17px"
+        onclick="count6(this.id)" id="minus">-</span>
+    </div>
+
+    <div class="smalltrap wrapper">
+        <span class="leftcircle hide pointer" style="top: 11px; left: 31px"
+        onclick="count5(this.id)" id="plus">+</span>
+
+        <span class="midcircle" style="top: 11px; right: 66px;">
+            <span id="counter5">0</span>
+        </span>
+
+        <span class="rightcircle hide pointer" style="top: 11px; left: 99px"
+        onclick="count5(this.id)" id="minus">-</span>
+    </div>
+
+    <div class="fourthtrapezoid wrapper">
+        <span class="leftcircle hide pointer" style="left: 74px"
+        onclick="count4(this.id)" id="plus">+</span>
+
+        <span class="midcircle" style="right: 112px">
+            <span id="counter4">0</span>
+        </span>
+
+        <span class="rightcircle hide pointer" style="left: 142px"
+        onclick="count4(this.id)" id="minus">-</span>
+    </div>
+
+    <div class="thirdtrapezoid wrapper">
+        <span class="leftcircle hide pointer" style="left: 135px" 
+        onclick="count3(this.id)" id="plus">+</span>
+
+        <span class="midcircle" style="right: 176px">
+            <span id="counter3">0</span>
+        </span>
+
+        <span class="rightcircle hide pointer" style="left: 203px" 
+        onclick="count3(this.id)" id="minus">-</span>
+    </div>
+
+    <div class="secondtrapezoid wrapper">
+        <span class="leftcircle hide pointer" style="left: 197px" 
+        onclick="count2(this.id)" id="plus">+</span>
+        
+        <span class="midcircle" style="right: 239px">
+            <span id="counter2">0</span>
+        </span>
+
+        <span class="rightcircle hide pointer" style="left: 265px" 
+        onclick="count2(this.id)" id="minus">-</span>
+    </div>
+
+    <div class="firsttrapezoid wrapper">
+        <span class="leftcircle hide pointer" 
+        onclick="count1(this.id)" id="plus">+</span>
+
+        <span class="midcircle" style="right: 302px">
+            <span id="counter1">0</span>
+        </span>
+
+        <span class="rightcircle hide pointer" 
+        onclick="count1(this.id)" id="minus">-</span>
+    </div>
+</div>
+
+<div class="textcontainer center">My Food Pyramid
+    <input class="center dateboxstyle" type="date" id="start" name="diet-start"
+    min="1970-01-01" max="2038-12-31">
+</input>
+</div>
+
+
+<script>
+    function count1(clicked_id)
+    {
+    var counter = document.getElementById('counter1').innerHTML;
+        var parsed = parseInt(counter);
+        let result = clicked_id == "minus" ? parsed - 1 : parsed + 1;
+        document.getElementById('counter1').innerHTML = result;
+    }
+
+    function count2(clicked_id)
+    {
+    var counter = document.getElementById('counter2').innerHTML;
+        var parsed = parseInt(counter);
+        let result = clicked_id == "minus" ? parsed - 1 : parsed + 1;
+        document.getElementById('counter2').innerHTML = result;
+    }
+
+    function count3(clicked_id)
+    {
+    var counter = document.getElementById('counter3').innerHTML;
+        var parsed = parseInt(counter);
+        let result = clicked_id == "minus" ? parsed - 1 : parsed + 1;
+        document.getElementById('counter3').innerHTML = result;
+    }
+
+    function count4(clicked_id)
+    {
+    var counter = document.getElementById('counter4').innerHTML;
+        var parsed = parseInt(counter);
+        let result = clicked_id == "minus" ? parsed - 1 : parsed + 1;
+        document.getElementById('counter4').innerHTML = result;
+    }
+
+    function count5(clicked_id)
+    {
+    var counter = document.getElementById('counter5').innerHTML;
+        var parsed = parseInt(counter);
+        let result = clicked_id == "minus" ? parsed - 1 : parsed + 1;
+        document.getElementById('counter5').innerHTML = result;
+    }
+
+    function count6(clicked_id)
+    {
+    var counter = document.getElementById('counter6').innerHTML;
+        var parsed = parseInt(counter);
+        let result = clicked_id == "minus" ? parsed - 1 : parsed + 1;
+        document.getElementById('counter6').innerHTML = result;
+    }
+
+</script>
+
+</body>
+</html> 

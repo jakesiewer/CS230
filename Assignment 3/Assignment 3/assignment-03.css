@@ -1,0 +1,83 @@
+p,
+input {
+    font: 14px Verdana;
+}
+
+.code {
+    margin-left: auto; 
+    margin-right: auto;
+    width: 50%;   
+}
+
+tr:nth-child(even) {background: #FFF}
+tr:nth-child(odd) {background: rgb(228, 228, 228)}
+
+
+.htmlTable {
+    border: solid 2px #000;
+    border-collapse: collapse;
+    margin-left: auto; 
+    margin-right: auto;
+    text-align: center;
+}
+
+.thCell {
+    border: solid 1px #000;
+    border-collapse: collapse;
+    padding: 8px 8px;
+    background-color:rgb(136, 136, 136);
+    font: 14px Verdana;
+    color: black;
+    font-weight: bold;
+}
+
+.thAlign {
+    text-align: center;
+}
+
+.tdCell {
+    border: solid 1px #000;
+    border-collapse: collapse;
+    padding: 8px 8px;
+    font: 14px Verdana;
+    color: black;
+}
+
+.tdTxtAlign {
+    text-align: left;
+}
+
+.tdNumAlign {
+    text-align: right;
+}
+
+.tcYellow{
+    background-color: yellow;
+    font: 14px Verdana;
+    padding: 8px 8px;
+    border: solid 1px #000;
+}
+
+.tcRed{
+    background-color: red;
+    color: white;
+    font: 14px Verdana;
+    padding: 8px 8px;
+    border: solid 1px #000;
+}
+
+/* buttons */
+.mid{
+    /* margin-left: 200px;
+    margin-right: 200px; */
+    /* padding-left: 200px;
+    padding-right: 200px; */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#convert{
+    color: black;
+    cursor: pointer;
+}
